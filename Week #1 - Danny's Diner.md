@@ -2,7 +2,7 @@
 
 <img width="540" height="540" alt="image" src="https://github.com/user-attachments/assets/be4faa06-f4d4-4166-9e4d-6f1e1e652c77" />
 
-## Summary and Problem Statement
+## Summary
 This week’s challenge is to analyze customer data from Danny’s Diner to solve the problem of understanding customer visit patterns, spending habits, and favorite menu items. The goal is to generate insights that enable better customer personalization and support decisions about expanding the loyalty program.
 
 ### Entity Relationship Diagram
