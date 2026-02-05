@@ -9,7 +9,7 @@ This week’s challenge is to analyze customer data from Danny’s Diner to solv
 <img width="1080" height="440" alt="image" src="https://github.com/user-attachments/assets/9eec5183-128b-49d6-ba08-65133b517935" />
 
 ## Questions, Queries, and Solutions
-All queries executed using PostgreSQL on [DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138). Follow the link to view the schema.
+All queries executed using PostgreSQL on [DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138). Follow the link to view the schema and feel free to copy and paste the codes to see them in action.
 
 **1. What is the total amount each customer spent at the restaurant?**
 ````sql  
