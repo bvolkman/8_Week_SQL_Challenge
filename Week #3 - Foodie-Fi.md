@@ -144,8 +144,7 @@ SELECT
   ),1) AS percent_of_customers		
 FROM foodie_fi.subscriptions		
 WHERE plan_id = 4;		
-````		
-It is important to include the decimal point on the '100.0' as leaving it off resulted in a rounding error producing the wrong number		
+````				
 Result:
 | total_churned | percent_of_customers |
 | ------------- | -------------------- |
@@ -292,9 +291,6 @@ Result:
 | 105                 |
 #
 **10. Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)**
-WITH_BUCKET - drops items into ranges, below the 0 is the lower range, 365 is the upper range, and 12 is the number of buckets:		
-WIDTH_BUCKET(annual.annual_date - trial.trial_date, 0, 365, 12) AS avg_days_to_upgrade		
-Below, the "||" is used to concentrate multiple parts into a singular string		
 ````sql	
 WITH trial_plans AS (		
   SELECT		
