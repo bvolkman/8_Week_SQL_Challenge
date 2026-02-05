@@ -450,7 +450,8 @@ SELECT
   MAX(duration) - MIN(duration) as delivery_range		
 FROM updated_runner_orders;		
 		
-/*Or if delivery time is defined as from the order time, not just the duration, I would use the following query:*/		
+-- Or if delivery time is defined as from the order time, not just the duration,
+-- 	I would use the following query:		
 		
 WITH delivery AS (		
   SELECT		
