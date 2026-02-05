@@ -36,7 +36,7 @@ This table contains all of the `topping_name` values with their corresponding `t
 <img width="1752" height="904" alt="image" src="https://github.com/user-attachments/assets/44b92d39-15fa-4f4d-80b1-41bf9570fcd5" />
 
 ## Questions, Queries, and Solutions
-All queries executed using PostgreSQL on [DB Fiddle](https://www.db-fiddle.com/f/7VcQKQwsS3CTkGRFG7vu98/65). Follow the link to view the schema.
+All queries executed using PostgreSQL on [DB Fiddle](https://www.db-fiddle.com/f/7VcQKQwsS3CTkGRFG7vu98/65). Follow the link to view the schema and feel free to copy and paste the codes to see them in action.
 
 ### A. Pizza Metrics
 
