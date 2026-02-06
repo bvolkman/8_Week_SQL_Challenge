@@ -34,7 +34,9 @@ SELECT
 FROM data_bank.customer_nodes;	
 ````
 Result:
-	
+| unique_nodes |
+| ------------ |
+| 5            |
 #
 **2. What is the number of nodes per region?**
 ````sql
@@ -45,19 +47,15 @@ FROM data_bank.customer_nodes AS c
 INNER JOIN data_bank.regions AS r	
   ON c.region_id = r.region_id	
 GROUP BY region_name;	
-	
--- OR if not counting distinct nodes, just total, use this query:	
-	
-SELECT	
-  region_name,
-  COUNT(node_id) AS nodes	
-FROM data_bank.customer_nodes AS c	
-INNER JOIN data_bank.regions AS r	
-  ON c.region_id = r.region_id	
-GROUP BY region_name;	
 ````
 Result:
-
+| region_name | nodes |
+| ----------- | ----- |
+| Africa      | 5     |
+| America     | 5     |
+| Asia        | 5     |
+| Australia   | 5     |
+| Europe      | 5     |
 #
 **3. How many customers are allocated to each region?**
 ````sql
@@ -72,7 +70,13 @@ GROUP BY region_name, r.region_id
 ORDER BY r.region_id;	
 ````
 Result:
-	
+| region_id | region_name | total_customers |
+| --------- | ----------- | --------------- |
+| 1         | Australia   | 110             |
+| 2         | America     | 105             |
+| 3         | Africa      | 102             |
+| 4         | Asia        | 95              |
+| 5         | Europe      | 88              |	
 #
 **4. How many days on average are customers reallocated to a different node?**
 ````sql
@@ -94,7 +98,9 @@ FROM dates
 WHERE node_id != prev_node;	
 ````
 Result:
-	
+| avg_days |
+| -------- |
+| 14.6     |	
 #	
 **5. What is the median, 80th and 95th percentile for this same reallocation days metric for each region?**
 ````sql
@@ -131,7 +137,13 @@ SELECT
 FROM percentile;
 ````
 Result:
-	
+| region_name | median | 80th_percentile | 95th_percentile |
+| ----------- | ------ | --------------- | --------------- |
+| Africa      | 15     | 23              | 28              |
+| America     | 15     | 23              | 27              |
+| Asia        | 14     | 23              | 27              |
+| Australia   | 16     | 23              | 28              |
+| Europe      | 15     | 24              | 28              |	
 #
 
 ### B. Customer Transactions
@@ -146,7 +158,11 @@ FROM data_bank.customer_transactions AS ct
 GROUP BY txn_type;
 ````
 Result:
-
+| transaction_type | transaction_count | total_transaction |
+| ---------------- | ----------------- | ----------------- |
+| purchase         | 1617              | 806537            |
+| deposit          | 2671              | 1359168           |
+| withdrawal       | 1580              | 793003            |
 #
 **2. What is the average total historical deposit counts and amounts for all customers?**
 ````sql
@@ -166,7 +182,9 @@ SELECT
 FROM txn_count;		
 ````
 Result:
-
+| avg_deposits | avg_total_amount |
+| ------------ | ---------------- |
+| 5            | 509              |
 #		
 **3. For each month - how many Data Bank customers make more than 1 deposit and either 1 purchase or 1 withdrawal in a single month?**
 ````sql
@@ -200,7 +218,12 @@ GROUP BY mnth
 ORDER BY mnth;		
 ````
 Result:
-
+| month | customer_count |
+| ----- | -------------- |
+| 1     | 168            |
+| 2     | 181            |
+| 3     | 192            |
+| 4     | 70             |
 #		
 **4. What is the closing balance for each customer at the end of the month?**	
 *I need to return to this one since I couldn't figure out how to include months with no transactions.*	
@@ -226,7 +249,16 @@ FROM monthly_txn
 WHERE customer_id < 4;		
 ````
 Result:
-
+| customer_id | txn_month | total_txn | closing_balance |
+| ----------- | --------- | --------- | --------------- |
+| 1           | 1         | 312       | 312             |
+| 1           | 3         | \-952     | \-640           |
+| 2           | 1         | 549       | 549             |
+| 2           | 3         | 61        | 610             |
+| 3           | 1         | 144       | 144             |
+| 3           | 2         | \-965     | \-821           |
+| 3           | 3         | \-401     | \-1222          |
+| 3           | 4         | 493       | \-729           |
 #	
 **5. What is the percentage of customers who increase their closing balance by more than 5%?**
 ````sql
@@ -275,5 +307,7 @@ SELECT
 FROM bal_change;
 ````
 Result:
-
+| over_5_perc | total_customers | percent_of_customers |
+| ----------- | --------------- | -------------------- |
+| 199         | 500             | 39.8                 |
 #	
