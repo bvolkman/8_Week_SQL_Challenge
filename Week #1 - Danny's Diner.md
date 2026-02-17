@@ -289,8 +289,10 @@ Result:
 #
 
 **Bonus Question - Join All The Things**
+
 The following questions are related creating basic data tables that Danny and his team can use to quickly derive insights without needing to join the underlying tables using SQL.
 Recreate the following table output using the available data:
+
 | customer_id | order_date | product_name | price | member |
 | ----------- | ---------- | ------------ | ----- | ------ |
 | A           | 2021-01-01 | curry        | 15    | N      |
