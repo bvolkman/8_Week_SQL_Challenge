@@ -235,7 +235,11 @@ ORDER by total_revenue DESC
 LIMIT 3;		
 ````
 Result:
-
+| product_id | product_name                 | total_revenue |
+| ---------- | ---------------------------- | ------------- |
+| 2a2353     | Blue Polo Shirt - Mens       | 217683        |
+| 9ec847     | Grey Fashion Jacket - Womens | 209304        |
+| 5d267b     | White Tee Shirt - Mens       | 152000        |
 #
 **2. What is the total quantity, revenue and discount for each segment?**
 ````sql
@@ -251,7 +255,12 @@ INNER JOIN balanced_tree.product_details p
 GROUP BY p.segment_id, p.segment_name;		
 ````
 Result:
-
+| segment_id | segment_name | total_quantity | total_revenue | total_discount |
+| ---------- | ------------ | -------------- | ------------- | -------------- |
+| 4          | Jacket       | 11385          | 366983        | 42451          |
+| 6          | Socks        | 11217          | 307977        | 35280          |
+| 5          | Shirt        | 11265          | 406143        | 48082          |
+| 3          | Jeans        | 11349          | 208350        | 23673          |
 #
 **3. What is the top selling product for each segment?**
 ````sql
@@ -278,7 +287,12 @@ FROM product_total
 WHERE ranking = 1;		
 ````
 Result:
-
+| segment_name | product_name                  | total_qty |
+| ------------ | ----------------------------- | --------- |
+| Jeans        | Navy Oversized Jeans - Womens | 3856      |
+| Jacket       | Grey Fashion Jacket - Womens  | 3876      |
+| Shirt        | Blue Polo Shirt - Mens        | 3819      |
+| Socks        | Navy Solid Socks - Mens       | 3792      |
 #
 **4. What is the total quantity, revenue and discount for each category?**
 ````sql
@@ -294,7 +308,10 @@ INNER JOIN balanced_tree.product_details p
 GROUP BY p.category_name, p.category_id;		
 ````
 Result:
-
+| category_name | category_id | quantity_sold | total_revenue | total_discount |
+| ------------- | ----------- | ------------- | ------------- | -------------- |
+| Mens          | 2           | 22482         | 714120        | 83362          |
+| Womens        | 1           | 22734         | 575333        | 66124          |
 #
 **5. What is the top selling product for each category?**
 ````sql
@@ -321,7 +338,10 @@ FROM product_cte
 WHERE ranking = 1;		
 ````
 Result:
-
+| category_name | prod_id | product_name                 | total_sold |
+| ------------- | ------- | ---------------------------- | ---------- |
+| Mens          | 2a2353  | Blue Polo Shirt - Mens       | 3819       |
+| Womens        | 9ec847  | Grey Fashion Jacket - Womens | 3876       |
 #
 **6. What is the percentage split of revenue by product for each segment?**
 ````sql
@@ -346,7 +366,20 @@ FROM product_rev
 ORDER BY segment_name, perc_revenue DESC;		
 ````
 Result:
-
+| segment_name | product_name                     | perc_revenue |
+| ------------ | -------------------------------- | ------------ |
+| Jacket       | Grey Fashion Jacket - Womens     | 57.03        |
+| Jacket       | Khaki Suit Jacket - Womens       | 23.51        |
+| Jacket       | Indigo Rain Jacket - Womens      | 19.45        |
+| Jeans        | Black Straight Jeans - Womens    | 58.15        |
+| Jeans        | Navy Oversized Jeans - Womens    | 24.06        |
+| Jeans        | Cream Relaxed Jeans - Womens     | 17.79        |
+| Shirt        | Blue Polo Shirt - Mens           | 53.6         |
+| Shirt        | White Tee Shirt - Mens           | 37.43        |
+| Shirt        | Teal Button Up Shirt - Mens      | 8.98         |
+| Socks        | Navy Solid Socks - Mens          | 44.33        |
+| Socks        | Pink Fluro Polkadot Socks - Mens | 35.5         |
+| Socks        | White Striped Socks - Mens       | 20.18        |
 
 *This question was interpreted as each segment being it's own section and the products within adding up to 100% instead of as a percentage over all segments.*
 #		
@@ -372,7 +405,12 @@ FROM product_rev
 ORDER BY category_name, perc_revenue DESC;		
 ````
 Result:
-
+| category_name | segment_name | perc_revenue |
+| ------------- | ------------ | ------------ |
+| Mens          | Shirt        | 56.87        |
+| Mens          | Socks        | 43.13        |
+| Womens        | Jacket       | 63.79        |
+| Womens        | Jeans        | 36.21        |
 
 *This question was interpreted as each category being it's own section and the segments within adding up to 100% instead of as a percentage over all categories.*
 #
@@ -395,7 +433,10 @@ FROM cat_rev
 ORDER BY perc_revenue DESC;		
 ````
 Result:
-
+| category_name | perc_revenue |
+| ------------- | ------------ |
+| Mens          | 55.38        |
+| Womens        | 44.62        |
 #
 **9. What is the total transaction “penetration” for each product? (hint: penetration = number of transactions where at least 1 quantity of a product was purchased divided by total number of transactions)**
 ````sql
@@ -426,7 +467,20 @@ GROUP BY t.product_name, t.product_id, p.total_txn
 ORDER BY penetration DESC;		
 ````
 Result:
-
+| product_name                     | product_id | penetration |
+| -------------------------------- | ---------- | ----------- |
+| Navy Solid Socks - Mens          | f084eb     | 51.24       |
+| Grey Fashion Jacket - Womens     | 9ec847     | 51          |
+| Navy Oversized Jeans - Womens    | c4a632     | 50.96       |
+| Blue Polo Shirt - Mens           | 2a2353     | 50.72       |
+| White Tee Shirt - Mens           | 5d267b     | 50.72       |
+| Pink Fluro Polkadot Socks - Mens | 2feb6b     | 50.32       |
+| Indigo Rain Jacket - Womens      | 72f5d4     | 50          |
+| Khaki Suit Jacket - Womens       | d5e9a6     | 49.88       |
+| Black Straight Jeans - Womens    | e83aa3     | 49.84       |
+| Cream Relaxed Jeans - Womens     | e31d39     | 49.72       |
+| White Striped Socks - Mens       | b9a74d     | 49.72       |
+| Teal Button Up Shirt - Mens      | c8d436     | 49.68       |
 #	
 **10. What is the most common combination of at least 1 quantity of any 3 products in a 1 single transaction?**
 
@@ -472,5 +526,49 @@ FROM
 WHERE rank = 1;
 ````
 Result:
-
+| product_1                    | product_2                   | product_3              | combo_count |
+| ---------------------------- | --------------------------- | ---------------------- | ----------- |
+| Grey Fashion Jacket - Womens | Teal Button Up Shirt - Mens | White Tee Shirt - Mens | 352         |
 #
+
+### Bonus Challenge
+
+**Use a single SQL query to transform the product_hierarchy and product_prices datasets to the product_details table.**
+	
+*Hint: you may want to consider using a recursive CTE to solve this problem!*	
+````sql	
+SET	
+	SEARCH_PATH = balanced_tree;
+SELECT	
+	product_id,
+	price,	
+	CONCAT(ph.level_text, ' ', ph1.level_text, ' - ', ph2.level_text) AS product_name,	
+	ph2.id AS category_id,	
+	ph1.id AS segment_id,	
+	ph.id AS style_id,	
+	ph2.level_text AS category_name,	
+	ph1.level_text AS segment_name,	
+	ph.level_text AS style_name	
+FROM product_hierarchy AS ph	
+JOIN product_hierarchy AS ph1
+	ON ph.parent_id = ph1.id	
+JOIN product_hierarchy AS ph2
+	ON ph1.parent_id = ph2.id	
+JOIN product_prices AS pp
+	ON ph.id = pp.id;
+````
+Result:
+| product_id | price | product_name                     | category_id | segment_id | style_id | category_name | segment_name | style_name          |
+| ---------- | ----- | -------------------------------- | ----------- | ---------- | -------- | ------------- | ------------ | ------------------- |
+| c4a632     | 13    | Navy Oversized Jeans - Womens    | 1           | 3          | 7        | Womens        | Jeans        | Navy Oversized      |
+| e83aa3     | 32    | Black Straight Jeans - Womens    | 1           | 3          | 8        | Womens        | Jeans        | Black Straight      |
+| e31d39     | 10    | Cream Relaxed Jeans - Womens     | 1           | 3          | 9        | Womens        | Jeans        | Cream Relaxed       |
+| d5e9a6     | 23    | Khaki Suit Jacket - Womens       | 1           | 4          | 10       | Womens        | Jacket       | Khaki Suit          |
+| 72f5d4     | 19    | Indigo Rain Jacket - Womens      | 1           | 4          | 11       | Womens        | Jacket       | Indigo Rain         |
+| 9ec847     | 54    | Grey Fashion Jacket - Womens     | 1           | 4          | 12       | Womens        | Jacket       | Grey Fashion        |
+| 5d267b     | 40    | White Tee Shirt - Mens           | 2           | 5          | 13       | Mens          | Shirt        | White Tee           |
+| c8d436     | 10    | Teal Button Up Shirt - Mens      | 2           | 5          | 14       | Mens          | Shirt        | Teal Button Up      |
+| 2a2353     | 57    | Blue Polo Shirt - Mens           | 2           | 5          | 15       | Mens          | Shirt        | Blue Polo           |
+| f084eb     | 36    | Navy Solid Socks - Mens          | 2           | 6          | 16       | Mens          | Socks        | Navy Solid          |
+| b9a74d     | 17    | White Striped Socks - Mens       | 2           | 6          | 17       | Mens          | Socks        | White Striped       |
+| 2feb6b     | 29    | Pink Fluro Polkadot Socks - Mens | 2           | 6          | 18       | Mens          | Socks        | Pink Fluro Polkadot |
