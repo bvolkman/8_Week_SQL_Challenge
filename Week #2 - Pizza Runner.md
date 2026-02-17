@@ -113,6 +113,7 @@ Result:
 #
 
 **5. How many Vegetarian and Meatlovers were ordered by each customer?**
+
 *First we need to clean up the `customer_orders` and `runner_orders` tables. We need consistency with the NULL values. Currently in both tables you will see values of NULL, 'null', and ''.*
 		
 Cleaning the `customer_orders` table:
