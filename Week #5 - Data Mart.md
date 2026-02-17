@@ -100,8 +100,6 @@ Result:
 | monday   |
 #
 **2. What range of week numbers are missing from the dataset?**
-
-Many of the answers online only responded with the missing week number for the 1st year (2018), I was able to get all of them for 2018 - 2020
 ````sql
 WITH week_order AS (	
   SELECT	
