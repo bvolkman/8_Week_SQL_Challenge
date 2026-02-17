@@ -225,7 +225,8 @@ Result:
 | 3     | 192            |
 | 4     | 70             |
 #		
-**4. What is the closing balance for each customer at the end of the month?**	
+**4. What is the closing balance for each customer at the end of the month?**
+
 *I need to return to this one since I couldn't figure out how to include months with no transactions.*	
 ````sql
 WITH monthly_txn AS (		
