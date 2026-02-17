@@ -86,7 +86,7 @@ Result:
 | 1000            |
 
 #
-**2. What is the monthly distribution of trial plan start_date values for our dataset - use the start of the month as the group by value**
+**2. What is the monthly distribution of trial plan `start_date` values for our dataset - use the start of the month as the group by value**
 ````sql
 SELECT		
   date_part('month', start_date) AS month,	
@@ -112,7 +112,7 @@ Result:
 | 11    | 75           |
 | 12    | 84           |
 #
-**3. What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name**
+**3. What plan `start_date` values occur after the year 2020 for our dataset? Show the breakdown by count of events for each `plan_name`**
 ````sql
 SELECT		
   s.plan_id,	
